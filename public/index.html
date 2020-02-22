@@ -6,8 +6,30 @@
 </head>
 
 <body>
+
+
     <h3>Chat App</h3>
     <p>This is a Chat Application developed using node.js </p>
+
+    <button id="increment"> Click +1 </button>
+
+    <div id="chat-box">
+        <p id="new_line"></p>
+    </div>
+
+    <form id="message_form">
+        <input type="text" name="message">
+        <button id="sender" type="submit"> send </button>
+    </form>
+    <!-- 
+         Adding button to share current location 
+     -->
+    </br>
+    <button id="location">Share location</button>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script src="js/chat.js"></script>
+
 </body>
 
 </html>
