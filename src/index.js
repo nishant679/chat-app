@@ -22,6 +22,7 @@ app.use(express.static(public_dir_path))
 let count = 0
 const welcomeMsg = "Hello!! Welcome to NChat"
 
+
 io.on('connection', (socket) => {
     console.log("New websocket connection !!")
     socket.emit('countUpdated', count, welcomeMsg)
