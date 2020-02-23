@@ -4,7 +4,7 @@ const path = require('path')
 const http = require('http')
 const socketio = require('socket.io')
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users')
-//const { generateMessage, generateLocationMessage } = require('./utils/messages')
+const { generateMessage, generateLocationMessage } = require('./utils/messages')
 
 const app = express()
 
