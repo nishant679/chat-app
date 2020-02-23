@@ -79,10 +79,12 @@ button:disabled {
     position: relative;
     background: #010412;
     width: auto;
-    height: 100%;   
+    height: 50vw;   
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .centered-form__box {
@@ -90,7 +92,7 @@ button:disabled {
     box-shadow: 0px 0px 17px 1px #1D1F26;
     background: #F7F7FA;
     padding: 24px;
-    width: 35%;
+    width: 330px;
     border-radius: 10px;
 }
 
