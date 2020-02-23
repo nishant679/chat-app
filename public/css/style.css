@@ -17,7 +17,12 @@ input {
 body {
     line-height: 1.4;
     color: #333333;
-    font-family: Helvetica, Arial, sans-serif;
+    height: 100vw;
+
+    background: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 h1 {
@@ -28,7 +33,7 @@ label {
     display: block;
     font-size: 14px;
     margin-bottom: 8px;
-    color: #777;
+    color: white;
 }
 
 input {
@@ -40,7 +45,7 @@ input {
 button {
     cursor: pointer;
     padding: 12px;
-    background: #7C5CBF;
+    background: #3D63FF;
     border: none;
     color: white;
     font-size: 16px;
@@ -55,23 +60,38 @@ button:disabled {
     cursor: default;
     background: #7c5cbf94;
 }
+/* */
+.msg-beautify{
+   background: #3D63FF;
+   font: white;
+   border-radius: 8px;
+   padding : 8px;
+   width : fit-content;
+   padding-left: 10px;
+   padding-right: 10px;
+
+   color: white;
+}
 
 /* Join Page Styles */
 
 .centered-form {
-    background: #333744;
-    width: 100vw;
-    height: 100vh;   
+    position: relative;
+    background: #010412;
+    width: auto;
+    height: 100%;   
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .centered-form__box {
+    position: relative;
     box-shadow: 0px 0px 17px 1px #1D1F26;
     background: #F7F7FA;
     padding: 24px;
-    width: 250px;
+    width: 35%;
+    border-radius: 10px;
 }
 
 .centered-form button {
@@ -92,7 +112,7 @@ button:disabled {
 .chat__sidebar {
     height: 100vh;
     color: white;
-    background: #333744;
+    background: #010412;
     width: 225px;
     overflow-y: scroll
 }
@@ -125,7 +145,7 @@ button:disabled {
 }
 
 .message__meta {
-    color: #777;
+    color: rgb(19, 18, 18);
     font-size: 14px;
 }
 
@@ -165,7 +185,7 @@ button:disabled {
 .room-title {
     font-weight: 400;
     font-size: 22px;
-    background: #2c2f3a;
+    background: #3D63FF;
     padding: 24px;   
 }
 

@@ -3,6 +3,8 @@ const express = require('express')
 const path = require('path')
 const http = require('http')
 const socketio = require('socket.io')
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users')
+const { generateMessage, generateLocationMessage } = require('./utils/messages')
 
 const app = express()
 
@@ -24,23 +26,55 @@ const welcomeMsg = "Hello!! Welcome to NChat"
 
 
 io.on('connection', (socket) => {
-    console.log("New websocket connection !!")
-    socket.emit('countUpdated', count, welcomeMsg)
     socket.broadcast.emit("A new user has Joined ");
-    //console.log(socket["id"])
 
-    socket.on('increment', () => {
-        count++;
-        socket.emit('countUpdated', count)
+    //Join event
+    socket.on('join', (options, callback) => {
+
+        socket.broadcast.emit("A new user has Joined ");
+        console.log("a new user joined");
+        const { error, user } = addUser({ id: socket.id, ...options })
+
+        if (error) {
+            return callback(error)
+        }
+
+        socket.join(user.room)
+
+        socket.emit('message', generateMessage('Admin', 'Welcome!'))
+        socket.broadcast.to(user.room).emit('message', generateMessage('Admin', `${user.username} has joined!`))
+        io.to(user.room).emit('roomData', {
+            room: user.room,
+            users: getUsersInRoom(user.room)
+        })
+
+        //callback()
+
     })
 
+
+    //defining actions for new user joins
     socket.on('message', (msg) => {
-        socket.broadcast.emit('newMsg', msg);
+        const user = getUser(socket.id)
+        let user_name = user.username;
+        io.to(user.room).emit('newMsg', { msg, user_name });
+        console.log(user.username)
     })
 
-    socket.on('location', (loc) => {
-        socket.emit(loc);
-        console.log(loc)
+
+
+    //function to invoke when a user disconnects
+    socket.on('disconnect', () => {
+        const user = removeUser(socket.id)
+
+        if (user) {
+            io.to(user.room).emit('message', generateMessage('Admin', `${user.username} has left!`))
+            io.to(user.room).emit('roomData', {
+                room: user.room,
+                users: getUsersInRoom(user.room)
+            })
+        }
+        console.log("user disconnected");
     })
 })
 
